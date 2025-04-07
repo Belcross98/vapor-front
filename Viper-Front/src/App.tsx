@@ -1,11 +1,9 @@
-import Navbar from "./components/NavBar";
-import GetManga from "./components/GetManga";
+import MangaList from "./components/MangaList";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <GetManga />
+      <MangaList />
     </div>
   );
 }
