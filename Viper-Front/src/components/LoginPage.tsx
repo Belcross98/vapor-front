@@ -23,8 +23,11 @@ function LoginPage() {
     })
       .then((response) => {
         if (response.ok) {
-          navigator("/");
-          return response.json();
+          return response.json().then((data) => {
+            localStorage.setItem("accessToken", data.tokens);
+            localStorage.setItem("username", username);
+            navigator("/");
+          });
         } else {
           return response.json().then((data) => {
             console.log(data);

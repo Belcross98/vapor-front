@@ -31,6 +31,19 @@ function MangaPage() {
           Average Rating: {manga.averageRating || "N/A"}
         </small>
       </div>
+
+      <div>
+        Reviews:
+        <ul>
+          {manga.reviews.map((review) => (
+            <>
+              <li>{review.comment}</li>
+              <li>{review.rating}</li>
+              <li>{review.userName}</li>
+            </>
+          ))}
+        </ul>
+      </div>
     </div>
   ) : (
     <h1>Loading...</h1>

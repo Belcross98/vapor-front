@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./NavBar.css";
+import LogOut from "./LogOut";
 function Navbar() {
   return (
     <>
@@ -18,8 +19,19 @@ function Navbar() {
           <button type="submit">Search</button>
         </form>
         <div className="nav-right">
-          <Link to="/Register">Register</Link>
-          <Link to="/Login">LogIn</Link>
+          {localStorage.getItem("accessToken") ? (
+            <>
+              <div>Hello {localStorage.getItem("username")}</div>
+              <Link to="/">
+                <LogOut />
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/Register">Register</Link>
+              <Link to="/Login">LogIn</Link>
+            </>
+          )}
         </div>
       </nav>
     </>
