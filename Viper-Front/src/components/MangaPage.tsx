@@ -3,10 +3,12 @@ import { Manga } from "../types/Manga";
 import { useParams } from "react-router-dom";
 import "./MangaPage.css";
 import Navbar from "./NavBar";
+import Review from "./Review";
 
 function MangaPage() {
   const [manga, setManga] = useState<Manga | null>(null);
   const { id } = useParams();
+  const mangaId = id ? Number(id) : 0;
 
   useEffect(() => {
     fetch(`http://localhost:5030/Manga/${id}`)
@@ -40,7 +42,7 @@ function MangaPage() {
           Reviews:
           <ul className="rev-list">
             {manga.reviews.map((review) => (
-              <li>
+              <li key={review.createdBy}>
                 <div className="rev">
                   <span>Author: {review.createdBy}</span>
                   <span>Rating: {review.rating}</span>
@@ -51,6 +53,7 @@ function MangaPage() {
           </ul>
         </div>
       </div>
+      <Review />
     </>
   ) : (
     <>
