@@ -7,6 +7,5 @@ export interface Review {
     reviewText: string;
     createdAt: Date;
     comment : string;
-    userName?: string; // Optional field to include the user's name
-    mangaName?: string; // Optional field to include the manga's name
+    createdBy : string;
 }
