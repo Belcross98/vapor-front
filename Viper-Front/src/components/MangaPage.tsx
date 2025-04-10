@@ -8,7 +8,6 @@ import Review from "./Review";
 function MangaPage() {
   const [manga, setManga] = useState<Manga | null>(null);
   const { id } = useParams();
-  const mangaId = id ? Number(id) : 0;
 
   useEffect(() => {
     fetch(`http://localhost:5030/Manga/${id}`)
@@ -53,7 +52,7 @@ function MangaPage() {
           </ul>
         </div>
       </div>
-      <Review />
+      {localStorage.getItem("accessToken") ? <Review /> : ""}
     </>
   ) : (
     <>

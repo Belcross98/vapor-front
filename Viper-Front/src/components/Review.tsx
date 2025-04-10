@@ -1,23 +1,24 @@
 import { FormEvent, useState } from "react";
+import { useParams } from "react-router-dom";
 import StarRating from "react-star-ratings";
 
 function Review() {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(1);
   const [error, setErrorMessage] = useState("");
+  const { id } = useParams();
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+    //e.preventDefault();
 
-    fetch("http://localhost:5030/Account/Review", {
+    fetch("http://localhost:5030/Review", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        mangaId: 1,
+        mangaId: id,
         comment: comment,
         rating: rating,
       }),
