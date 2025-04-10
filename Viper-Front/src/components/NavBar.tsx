@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import LogOut from "./LogOut";
+import SearchManga from "./SearchManga";
 function Navbar() {
   return (
     <>
@@ -9,15 +10,7 @@ function Navbar() {
           <Link to="/">Home</Link>
           <Link to="/About">About</Link>
         </div>
-        <form>
-          <input
-            type="search"
-            id="search"
-            name="search"
-            placeholder="Search for a manga..."
-          />
-          <button type="submit">Search</button>
-        </form>
+        <SearchManga />
         <div className="nav-right">
           {localStorage.getItem("accessToken") ? (
             <>
