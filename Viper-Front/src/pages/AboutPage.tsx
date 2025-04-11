@@ -3,7 +3,6 @@ import Navbar from "../components/NavBar";
 function AboutPage() {
   return (
     <div>
-      <Navbar />
       <h1>About MangaLib</h1> Welcome to MangaLib, your ultimate destination for
       manga lovers! Whether you're a seasoned manga enthusiast or just starting
       your journey into the world of manga, MangaLib is here to offer you a

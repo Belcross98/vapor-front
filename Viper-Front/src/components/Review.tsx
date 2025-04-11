@@ -9,7 +9,7 @@ function Review() {
   const { id } = useParams();
 
   const handleSubmit = (e: FormEvent) => {
-    //e.preventDefault();
+    e.preventDefault();
 
     fetch("http://localhost:5030/Review", {
       method: "POST",

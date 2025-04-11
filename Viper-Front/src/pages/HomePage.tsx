@@ -22,7 +22,6 @@ function HomePage() {
 
   return (
     <>
-      <Navbar />
       <div className="container mt-4">
         {data ? (
           <div className="row">

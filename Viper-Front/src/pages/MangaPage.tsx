@@ -26,7 +26,6 @@ function MangaPage() {
 
   return manga ? (
     <>
-      <Navbar />
       <div className="card h-100">
         <img
           src={manga.mangaPictureURL || "https://via.placeholder.com/150"}
@@ -65,7 +64,6 @@ function MangaPage() {
     </>
   ) : (
     <>
-      <Navbar />
       <h1>Loading...</h1>
     </>
   );

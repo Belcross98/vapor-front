@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Manga } from "../types/Manga";
 import { User } from "../types/User";
 import { LogInResponse } from "../types/LogInResponse";
