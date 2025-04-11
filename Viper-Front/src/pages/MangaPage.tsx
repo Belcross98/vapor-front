@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import { Manga } from "../types/Manga";
 import { useParams } from "react-router-dom";
-import "./MangaPage.css";
-import Navbar from "./NavBar";
-import Review from "./Review";
+import "../styles/MangaPage.css";
+import Navbar from "../components/NavBar";
+import Review from "../components/Review";
+import { getManga } from "../services/MangaApi";
 
 function MangaPage() {
   const [manga, setManga] = useState<Manga | null>(null);
   const { id } = useParams();
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5030/Manga/${id}`)
-      .then((response) => response.json())
-      .then((manga: Manga) => setManga(manga));
+    const loadManga = async () => {
+      try {
+        const selectedManga = await getManga(id!);
+        setManga(selectedManga);
+      } catch (err) {
+        setError("Failed to load selected manga...");
+        console.log(error);
+      }
+    };
+    loadManga();
   }, [id]);
 
   return manga ? (

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./NavBar.css";
+import "../styles/NavBar.css";
 import LogOut from "./LogOut";
 import SearchManga from "./SearchManga";
 function Navbar() {

@@ -1,47 +1,28 @@
 import { FormEvent, useEffect, useState } from "react";
-import Navbar from "./NavBar";
-import "./LoginPage.css";
+import Navbar from "../components/NavBar";
+import "../styles/LoginPage.css";
 import { useNavigate } from "react-router-dom";
+import { logIn } from "../services/MangaApi";
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigator = useNavigate();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    fetch("http://localhost:5030/Account/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        Username: username,
-        Password: password,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json().then((data) => {
-            localStorage.setItem("accessToken", data.tokens);
-            localStorage.setItem("username", username);
-            navigator("/");
-          });
-        } else {
-          return response.json().then((data) => {
-            console.log(data);
-            const errorList: string[] = Object.values(
-              data.errors
-            ).flat() as string[];
-            const error = errorList.pop();
-            throw new Error(error);
-          });
-        }
-      })
-      .catch((e) => {
-        setErrorMessage(e.message);
-      });
+    try {
+      const error = await logIn({ username, password });
+
+      if (error) {
+        setErrorMessage(error);
+      } else {
+        navigator("/");
+      }
+    } catch (error: any) {
+      setErrorMessage("Invalid Username/Password");
+    }
   };
 
   return (

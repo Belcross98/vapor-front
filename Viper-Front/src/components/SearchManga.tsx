@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/SearchManga.css";
 
 function SearchManga() {
   const [query, setQuery] = useState("");
@@ -29,6 +30,7 @@ function SearchManga() {
   return (
     <div>
       <input
+        className="nav-search"
         type="text"
         placeholder="Search mangas..."
         value={query}

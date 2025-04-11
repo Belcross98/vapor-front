@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 import { Manga } from "../types/Manga";
 import { Link } from "react-router-dom";
-import Navbar from "./NavBar";
+import Navbar from "../components/NavBar";
+import { getAllMangas } from "../services/MangaApi";
 
-function MangaList() {
+function HomePage() {
   const [data, setData] = useState<Manga[] | null>(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5030/Manga?PageSize=100")
-      .then((response) => response.json())
-      .then((data: Manga[]) => setData(data));
+    const loadMangas = async () => {
+      try {
+        const mangas = await getAllMangas();
+        setData(mangas);
+      } catch (error) {
+        setError("Failed to load errors");
+      }
+    };
+    loadMangas();
   }, []);
 
   return (
@@ -54,4 +62,4 @@ function MangaList() {
   );
 }
 
-export default MangaList;
+export default HomePage;

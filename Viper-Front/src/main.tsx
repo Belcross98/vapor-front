@@ -1,13 +1,12 @@
 import { createRoot } from "react-dom/client";
 import { StrictMode } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NotFoudPage from "./components/NotFoundPage.tsx";
-import Manga from "./components/MangaPage.tsx";
-import AboutPage from "./components/AboutPage.tsx";
-import LoginPage from "./components/LoginPage.tsx";
+import NotFoudPage from "./pages/NotFoundPage.tsx";
+import Manga from "./pages/MangaPage.tsx";
+import AboutPage from "./pages/AboutPage.tsx";
+import LoginPage from "./pages/LoginPage.tsx";
 import Register from "./components/Register.tsx";
 
 const router = createBrowserRouter([
