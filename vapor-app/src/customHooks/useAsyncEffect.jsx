@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function useAsyncEffect(func: () => Promise<void>, depArray: any[]) {
+function useAsyncEffect(func, depArray) {
   useEffect(() => {
     func();
   }, depArray);

@@ -2,10 +2,10 @@ import { createContext, useEffect, useState } from "react";
 
 export const globalContext = createContext({
   isLoggedIn: false,
-  setIsLoggedIn: (value: boolean) => {},
+  setIsLoggedIn: (value) => {},
 });
 
-function GlobalContext({ children }: any) {
+function GlobalContext({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {

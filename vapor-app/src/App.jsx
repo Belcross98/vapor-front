@@ -1,10 +1,10 @@
-import HomePage from "./pages/HomePage";
-import NotFoudPage from "./pages/NotFoundPage.tsx";
-import Manga from "./pages/MangaPage.tsx";
-import AboutPage from "./pages/AboutPage.tsx";
-import LoginPage from "./pages/LoginPage.tsx";
-import Register from "./pages/Register.tsx";
-import Navbar from "./components/NavBar.tsx";
+import HomePage from "./pages/HomePage.jsx";
+import NotFoudPage from "./pages/NotFoundPage.jsx";
+import Manga from "./pages/MangaPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import Register from "./pages/Register.jsx";
+import Navbar from "./components/NavBar.jsx";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 function App() {

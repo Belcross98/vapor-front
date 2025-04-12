@@ -11,7 +11,7 @@ function LoginPage() {
   const navigator = useNavigate();
   const { setIsLoggedIn } = useContext(globalContext);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { success, errorText } = await logIn({ username, password });

@@ -4,7 +4,7 @@ import "../styles/SearchManga.css";
 function SearchManga() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const [timeoutId, setTimeoutId] = useState(null);
 
   useEffect(() => {
     if (!query) {
@@ -38,7 +38,7 @@ function SearchManga() {
       />
       {results.length > 0 && (
         <ul>
-          {results.map((manga: any) => (
+          {results.map((manga) => (
             <li key={manga.id}>{manga.name}</li>
           ))}
         </ul>

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -7,7 +7,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     fetch("http://localhost:5030/Account/register", {
@@ -27,14 +27,14 @@ function Register() {
           return response.statusText;
         } else
           return response.json().then((data) => {
-            let errorList: string[];
+            let errorList;
             if (data.errors) {
-              errorList = Object.values(data.errors).flat() as string[];
+              errorList = Object.values(data.errors).flat();
             } else {
-              errorList = data.map((item: any) => item.description);
+              errorList = data.map((item) => item.description);
             }
 
-            let error: string = errorList.pop()!;
+            let error = errorList.pop();
             throw new Error(error);
           });
       })

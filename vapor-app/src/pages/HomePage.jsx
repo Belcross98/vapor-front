@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Manga } from "../types/Manga";
 import { Link } from "react-router-dom";
 import useAsyncEffect from "../customHooks/useAsyncEffect";
 import { getAllMangas } from "../services/MangaApi";
 
 function HomePage() {
-  const [data, setData] = useState<Manga[] | null>(null);
+  const [data, setData] = useState(null);
   const [error, setError] = useState("");
 
   const loadMangas = async () => {

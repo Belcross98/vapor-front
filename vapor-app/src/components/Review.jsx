@@ -8,7 +8,7 @@ function Review() {
   const [error, setErrorMessage] = useState("");
   const { id } = useParams();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e) => {
     //e.preventDefault();
 
     fetch("http://localhost:5030/Review", {

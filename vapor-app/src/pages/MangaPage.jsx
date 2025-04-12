@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Manga } from "../types/Manga";
 import { useParams } from "react-router-dom";
 import "../styles/MangaPage.css";
 import Review from "../components/Review";
@@ -7,12 +6,12 @@ import { getManga } from "../services/MangaApi";
 import useAsyncEffect from "../customHooks/useAsyncEffect";
 
 function MangaPage() {
-  const [manga, setManga] = useState<Manga | null>(null);
+  const [manga, setManga] = useState(null)
   const { id } = useParams();
   const [error, setError] = useState("");
 
   const loadManga = async () => {
-    const { success, errorText, data } = await getManga(id!);
+    const { success, errorText, data } = await getManga(id);
     if (success) {
       setManga(data);
     } else {
