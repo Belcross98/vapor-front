@@ -1,38 +1,29 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import StarRating from "react-star-ratings";
+import { createReview } from "../services/MangaApi";
 
-function Review() {
+function Review({ loadManga }) {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(1);
   const [error, setErrorMessage] = useState("");
   const { id } = useParams();
 
-  const handleSubmit = (e) => {
-    //e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    fetch("http://localhost:5030/Review", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        mangaId: id,
-        comment: comment,
-        rating: rating,
-      }),
-    })
-      .then((response) => {
-        if (response.status == 201) {
-          return response.json();
-        } else {
-          console.log("nono");
-        }
-      })
-      .catch((e) => {
-        setErrorMessage(e.message);
-      });
+    const { success, errorText, data } = await createReview(
+      id,
+      comment,
+      rating
+    );
+    if (success) {
+      setComment("");
+      setRating(1);
+      loadManga();
+    } else {
+      setErrorMessage(errorText);
+    }
   };
 
   return (

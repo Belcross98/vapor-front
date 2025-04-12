@@ -1,47 +1,28 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../services/MangaApi";
+import { globalContext } from "../context/context";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { setIsLoggedIn } = useContext(globalContext);
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch("http://localhost:5030/Account/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        username: username,
-        password: password,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          navigate("/");
-          return response.statusText;
-        } else
-          return response.json().then((data) => {
-            let errorList;
-            if (data.errors) {
-              errorList = Object.values(data.errors).flat();
-            } else {
-              errorList = data.map((item) => item.description);
-            }
-
-            let error = errorList.pop();
-            throw new Error(error);
-          });
-      })
-
-      .catch((error) => {
-        setErrorMessage(error.message);
-      });
+    const { success, errorText, data } = await registerUser(
+      email,
+      username,
+      password
+    );
+    if (success) {
+      setIsLoggedIn(true);
+      navigate("/");
+    } else {
+      setErrorMessage(errorText);
+    }
   };
 
   return (

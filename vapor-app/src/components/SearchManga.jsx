@@ -1,31 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/SearchManga.css";
+import useDebounce from "../customHooks/useDebounce";
+import { searchManga } from "../services/MangaApi";
 
 function SearchManga() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [timeoutId, setTimeoutId] = useState(null);
 
-  useEffect(() => {
+  const handleSearch = async (query) => {
     if (!query) {
       setResults([]);
       return;
     }
 
-    if (timeoutId) clearTimeout(timeoutId);
-    const id = setTimeout(() => {
-      fetch(
-        `http://localhost:5030/Manga?MangaName=${encodeURIComponent(query)}`
-      )
-        .then((res) => res.json())
-        .then(setResults)
-        .catch((err) => console.error(err));
-    }, 300);
-
-    setTimeoutId(id);
-
-    return () => clearTimeout(id);
-  }, [query]);
+    const { success, data, errorText } = await searchManga(query);
+    if (success) {
+      setResults(data);
+    } else {
+      console.error(errorText);
+    }
+  };
+  useDebounce(() => handleSearch(query), query, 1000);
 
   return (
     <div>

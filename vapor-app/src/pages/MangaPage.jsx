@@ -6,7 +6,7 @@ import { getManga } from "../services/MangaApi";
 import useAsyncEffect from "../customHooks/useAsyncEffect";
 
 function MangaPage() {
-  const [manga, setManga] = useState(null)
+  const [manga, setManga] = useState(null);
   const { id } = useParams();
   const [error, setError] = useState("");
 
@@ -55,7 +55,11 @@ function MangaPage() {
           </ul>
         </div>
       </div>
-      {localStorage.getItem("accessToken") ? <Review /> : ""}
+      {localStorage.getItem("accessToken") ? (
+        <Review loadManga={loadManga} />
+      ) : (
+        ""
+      )}
     </>
   ) : (
     <>
