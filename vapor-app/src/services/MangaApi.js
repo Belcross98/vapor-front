@@ -3,7 +3,7 @@ const API_URL = "http://localhost:5030";
 
 export const getAllMangas = async () => {
   try {
-    const response = await fetch(`${API_URL}/Manga`);
+    const response = await fetch(`${API_URL}/Manga?PageSize=20`);
     if (response.ok) {
       const data = await response.json();
       return {

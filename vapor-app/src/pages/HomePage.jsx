@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import useAsyncEffect from "../customHooks/useAsyncEffect";
 import { getAllMangas } from "../services/MangaApi";
+import { useNavigate } from "react-router-dom";
+import "../styles/HomePage.css";
 
 function HomePage() {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const loadMangas = async () => {
     const { success, errorText, data } = await getAllMangas();
@@ -15,16 +17,21 @@ function HomePage() {
       setError(errorText);
     }
   };
+
+  const handleClick = (id) => {
+    navigate(`/Manga/${id}`);
+  }
+
   useAsyncEffect(loadMangas, []);
   return (
     <>
-      <div className="container mt-4">
+      <div className="container mt-4" >
         {data ? (
           <div className="row">
             {data.map((manga, index) => (
               <div className="col-md-4 mb-4" key={index}>
-                <Link to={`/Manga/${manga.id}`}>
-                  <div className="card h-100">
+               
+                  <div className="card h-100 manga-card" onClick={() => handleClick(manga.id)}>
                     <img
                       src={
                         manga.mangaPictureURL == ""
@@ -46,7 +53,7 @@ function HomePage() {
                       </small>
                     </div>
                   </div>
-                </Link>
+               
               </div>
             ))}
           </div>
