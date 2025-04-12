@@ -1,0 +1,7 @@
+.nav-search {
+  transition: padding 0.5s ease;
+}
+.nav-search:hover {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
