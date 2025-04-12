@@ -13,10 +13,12 @@ function App() {
     {
       path: "/",
       element: (
-        <>
+        <div className="html-page">
           <Navbar />
-          <Outlet />
-        </>
+          <div className="page-content">
+            <Outlet />
+          </div>
+        </div>
       ),
       children: [
         { path: "/", element: <HomePage /> },

@@ -22,3 +22,13 @@ button:hover {
   background-color: none;
   background: none;
 }
+
+.html-page {
+  display: flex;
+  max-height: 100vh;
+}
+.page-content {
+  max-height: 100vh;
+  max-width: calc(100vw - 20rem);
+  overflow-y: scroll;
+}

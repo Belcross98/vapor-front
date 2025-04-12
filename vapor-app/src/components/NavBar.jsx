@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom";
 import "../styles/NavBar.css";
-import LogOut from "./LogOut";
-import SearchManga from "./SearchManga";
 import { useContext } from "react";
 import { globalContext } from "../context/context";
 import logo from "./../assets/images/logo.png";
@@ -20,11 +17,13 @@ function Navbar() {
             <img className="nav-section-collapse-button" src={closeImage} />
           </button>
         </div>
-        <div className="nav-section-links-container">
-          <LinkButton route={"/"} linkInnerText={"Home"} />
-          <LinkButton route={"/About"} linkInnerText={"About"} />
+        <div className="nav-section-links-and-footer-container">
+          <div className="nav-section-links-container">
+            <LinkButton route={"/"} linkInnerText={"Home"} />
+            <LinkButton route={"/About"} linkInnerText={"About"} />
+          </div>
+          <div className="nav-section-footer">&#169; 2025. Vapor </div>
         </div>
-        <div>footer</div>
       </nav>
     </>
   );

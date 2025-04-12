@@ -1,20 +1,19 @@
 .nav-section {
   display: flex;
   flex-direction: column;
-  background-color: rgb(20, 86, 141);
-  position: fixed;
+  background-color: #001219;
   top: 0;
   left: 0;
   width: 20rem;
   height: 100vh;
   z-index: 100;
   padding: 3rem 2rem;
-  justify-content: space-between;
 }
 .nav-section-logo-and-collapse-button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 10rem;
 }
 .nav-section-logo {
   width: 10rem;
@@ -28,29 +27,22 @@
 .nav-section-collapse-button:hover {
   transform: scale(110%);
 }
-
+.nav-section-links-and-footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 .nav-section-links-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+  gap: 2rem;
 }
-
-.nav-left a,
-.nav-right a {
-  text-decoration: none;
-  color: black;
-  font-family: serif;
-}
-
-.nav-left {
-  display: flex;
-  gap: 30px;
-  font-size: larger;
-}
-.nav-right {
-  display: flex;
-  font-size: larger;
-  gap: 30px;
+.nav-section-footer {
+  color: #f0ede4;
+  font-size: 1.6rem;
+  text-align: center;
 }
