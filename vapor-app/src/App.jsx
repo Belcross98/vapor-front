@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import Register from "./pages/Register.jsx";
 import Navbar from "./components/NavBar.jsx";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import "./styles/global.css";
 
 function App() {
   const router = createBrowserRouter([
