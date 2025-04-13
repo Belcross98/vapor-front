@@ -23,8 +23,9 @@ function SearchManga() {
   useDebounce(() => handleSearch(query), query, 1000);
 
   return (
-    <div>
+    <div className="nav-search-container">
       <input
+        spellCheck="false"
         className="nav-search"
         type="text"
         placeholder="Search mangas..."
@@ -32,11 +33,13 @@ function SearchManga() {
         onChange={(e) => setQuery(e.target.value)}
       />
       {results.length > 0 && (
-        <ul>
+        <div className="nav-search-results">
           {results.map((manga) => (
-            <li key={manga.id}>{manga.name}</li>
+            <div className="nav-search-results-element" key={manga.id}>
+              {manga.name}
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

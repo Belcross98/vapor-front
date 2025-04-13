@@ -44,3 +44,7 @@ button:hover {
   width: 100%;
   overflow-y: scroll;
 }
+textarea:focus,
+input:focus {
+  outline: none;
+}
