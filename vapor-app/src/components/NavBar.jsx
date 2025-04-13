@@ -1,5 +1,5 @@
 import "../styles/NavBar.css";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { globalContext } from "../context/context";
 import logo from "./../assets/images/logo.png";
 import closeImage from "./../assets/images/close.png";
