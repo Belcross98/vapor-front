@@ -1,13 +1,17 @@
-const responseHandler = async (response) => {
+const responseHandler = async (response, login) => {
+  const data = await response.json();
   if (response.ok) {
-    const data = await response.json();
+    if (login) {
+      localStorage.setItem("accessToken", data.data.tokens);
+      localStorage.setItem("username", data.data.username);
+    }
     return {
       success: true,
       data: data.data,
     };
   }
+  const errorText = Object.values(data.errors).flat().pop();
 
-  const errorText = await response.text();
   return {
     success: false,
     errorText: errorText,
