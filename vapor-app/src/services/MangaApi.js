@@ -1,21 +1,10 @@
+import responseHandler from "./ResponseHandler";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const getAllMangas = async () => {
   try {
-    const response = await fetch(`${API_URL}/Manga?PageSize=20`);
-    if (response.ok) {
-      const data = await response.json();
-      return {
-        success: true,
-        data: data,
-      };
-    } else {
-      const errorText = await response.text();
-      return {
-        success: false,
-        errorText: errorText,
-      };
-    }
+    const response = await fetch(`${API_URL}/Manga?PageSize=500`);
+    return await responseHandler(response);
   } catch (error) {
     return {
       success: false,
@@ -27,13 +16,7 @@ export const getAllMangas = async () => {
 export const getManga = async (id) => {
   try {
     const response = await fetch(`${API_URL}/Manga/${id}`);
-    if (response.ok) {
-      const data = await response.json();
-      return { success: true, data: data };
-    } else {
-      const errorText = await response.text();
-      return { sucess: false, errorText: errorText };
-    }
+    return await responseHandler(response);
   } catch (error) {
     return { sucess: false, errorText: error.message };
   }
@@ -85,14 +68,7 @@ export const createReview = async (mangaId, comment, rating) => {
         rating: rating,
       }),
     });
-
-    const data = await response.json();
-    if (response.ok) {
-      return { success: true, data: data };
-    } else {
-      const errorText = await response.text();
-      return { success: false, errorText: errorText };
-    }
+    return responseHandler(response);
   } catch (error) {
     return {
       success: false,
@@ -146,13 +122,7 @@ export const registerUser = async (email, username, password) => {
 export const searchManga = async (query) => {
   try {
     const response = await fetch(`${API_URL}/Manga?MangaName=${query}`);
-    if (response.ok) {
-      const data = await response.json();
-      return { success: true, data: data };
-    } else {
-      const errorText = await response.text();
-      return { success: false, errorText: errorText };
-    }
+    return await responseHandler(response);
   } catch (error) {
     return { success: false, errorText: error.message };
   }
