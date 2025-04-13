@@ -8,6 +8,7 @@
   height: 100vh;
   z-index: 100;
   padding: 3rem 2rem;
+  transition: width 0.3s ease;
 }
 .nav-section-logo-and-collapse-button-container {
   display: flex;
@@ -45,4 +46,7 @@
   color: #f0ede4;
   font-size: 1.6rem;
   text-align: center;
+}
+.collapse {
+  width: 0;
 }

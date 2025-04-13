@@ -7,6 +7,7 @@ export const globalContext = createContext({
 
 function GlobalContext({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [navigationShow, setNavigationShow] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -21,6 +22,8 @@ function GlobalContext({ children }) {
       value={{
         isLoggedIn,
         setIsLoggedIn,
+        navigationShow,
+        setNavigationShow,
       }}
     >
       {children}

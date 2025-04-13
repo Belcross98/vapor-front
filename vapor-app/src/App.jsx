@@ -6,7 +6,8 @@ import LoginPage from "./pages/LoginPage.jsx";
 import Register from "./pages/Register.jsx";
 import Navbar from "./components/NavBar.jsx";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import "./styles/global.css";
+import "./styles/Global.css";
+import SearchbarAndProfile from "./components/SearchbarAndProfile.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,6 +17,7 @@ function App() {
         <div className="html-page">
           <Navbar />
           <div className="page-content">
+            <SearchbarAndProfile />
             <Outlet />
           </div>
         </div>

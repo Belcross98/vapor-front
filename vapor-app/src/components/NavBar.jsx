@@ -6,14 +6,19 @@ import closeImage from "./../assets/images/close.png";
 import LinkButton from "./LinkButton.jsx";
 
 function Navbar() {
-  const { isLoggedIn } = useContext(globalContext);
+  const { isLoggedIn, navigationShow, setNavigationShow } =
+    useContext(globalContext);
+
+  function collapseNav() {
+    setNavigationShow(false);
+  }
 
   return (
     <>
-      <nav className="nav-section">
+      <nav className={navigationShow ? "nav-section" : "nav-section collapse"}>
         <div className="nav-section-logo-and-collapse-button-container">
           <img className="nav-section-logo" src={logo} />
-          <button>
+          <button onClick={collapseNav}>
             <img className="nav-section-collapse-button" src={closeImage} />
           </button>
         </div>
