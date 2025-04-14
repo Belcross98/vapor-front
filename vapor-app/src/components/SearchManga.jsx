@@ -13,7 +13,7 @@ function SearchManga() {
       return;
     }
 
-    const { success, data, errorText } = await searchManga(query);
+    const { success, errorText, data } = await searchManga(query);
     if (success) {
       setResults(data);
     } else {

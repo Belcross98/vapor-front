@@ -14,7 +14,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { success, errorText } = await logIn({ username, password });
+    const { success, errorText, data } = await logIn({ username, password });
     if (!success) {
       setErrorMessage(errorText);
     } else {

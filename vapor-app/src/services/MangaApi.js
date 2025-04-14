@@ -9,6 +9,7 @@ export const getAllMangas = async () => {
     return {
       success: false,
       errorText: error.message,
+      data: error,
     };
   }
 };
@@ -18,7 +19,7 @@ export const getManga = async (id) => {
     const response = await fetch(`${API_URL}/Manga/${id}`);
     return await responseHandler(response);
   } catch (error) {
-    return { sucess: false, errorText: error.message };
+    return { sucess: false, errorText: error.message, data: error };
   }
 };
 
@@ -27,7 +28,7 @@ export const searchManga = async (query) => {
     const response = await fetch(`${API_URL}/Manga?MangaName=${query}`);
     return await responseHandler(response);
   } catch (error) {
-    return { success: false, errorText: error.message };
+    return { success: false, errorText: error.message, data: error };
   }
 };
 
@@ -52,6 +53,7 @@ export const createReview = async (mangaId, comment, rating) => {
     return {
       success: false,
       errorText: error.message,
+      data: error,
     };
   }
 };
@@ -70,6 +72,7 @@ export const logIn = async (user) => {
     return {
       success: false,
       errorText: error.message,
+      data: error,
     };
   }
 };
@@ -92,6 +95,7 @@ export const registerUser = async (email, username, password) => {
     return {
       success: false,
       errorText: error.message,
+      data: error,
     };
   }
 };
