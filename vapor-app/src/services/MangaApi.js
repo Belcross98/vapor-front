@@ -67,7 +67,12 @@ export const logIn = async (user) => {
       },
       body: JSON.stringify(user),
     });
-    return await responseHandler(response, true);
+    const loginResponse = await responseHandler(response);
+    if (loginResponse.success) {
+      localStorage.setItem("accessToken", loginResponse.data.tokens);
+      localStorage.setItem("username", loginResponse.data.username);
+    }
+    return loginResponse;
   } catch (error) {
     return {
       success: false,
@@ -90,7 +95,12 @@ export const registerUser = async (email, username, password) => {
         password: password,
       }),
     });
-    return await responseHandler(response, true);
+    const registerResponse = await responseHandler(response);
+    if (registerResponse.success) {
+      localStorage.setItem("accessToken", registerResponse.data.tokens);
+      localStorage.setItem("username", registerResponse.data.username);
+    }
+    return registerResponse;
   } catch (error) {
     return {
       success: false,
