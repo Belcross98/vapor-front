@@ -58,6 +58,27 @@ export const createReview = async (mangaId, comment, rating) => {
   }
 };
 
+export const deleteReview = async (reviewId) => {
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    const response = await fetch(`${API_URL}/Review/${reviewId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return await responseHandler(response);
+  } catch (error) {
+    return {
+      success: false,
+      errorText: error.message,
+      data: error,
+    };
+  }
+};
+
 export const logIn = async (user) => {
   try {
     const response = await fetch(`${API_URL}/Account/login`, {

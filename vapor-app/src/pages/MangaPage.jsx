@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/MangaPage.css";
 import Review from "../components/Review";
-import { getManga } from "../services/MangaApi";
+import { deleteReview, getManga } from "../services/MangaApi";
 import useAsyncEffect from "../customHooks/useAsyncEffect";
 
 function MangaPage() {
@@ -18,6 +18,16 @@ function MangaPage() {
       setError(errorText);
     }
   };
+
+  const deleteRev = async (mangaId) => {
+    const { success, errorText } = await deleteReview(mangaId);
+    if (success) {
+      loadManga();
+    } else {
+      setError(errorText);
+    }
+  };
+
   useAsyncEffect(loadManga, [id]);
   return manga ? (
     <>
@@ -56,7 +66,10 @@ function MangaPage() {
         </div>
       </div>
       {localStorage.getItem("accessToken") ? (
-        <Review loadManga={loadManga} />
+        <>
+          <Review loadManga={loadManga} />
+          <button onClick={() => deleteRev(id)}>Delete Review</button>
+        </>
       ) : (
         ""
       )}
