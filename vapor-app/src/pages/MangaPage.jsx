@@ -30,50 +30,43 @@ function MangaPage() {
 
   useAsyncEffect(loadManga, [id]);
   return manga ? (
-    <>
-      <div className="card h-100">
+    <div className="manga-page">
+      <div className="manga-page-left">
         <img
           src={manga.mangaPictureURL == "" ? undefined : manga.mangaPictureURL}
-          className="card-img-top img-fluid" // Bootstrap classes
+          className="manga-page-img"
           alt={manga.name}
-          style={{ objectFit: "cover", height: "200px" }}
         />
-        <div className="card-body">
-          <h5 className="card-title">{manga.name}</h5>
-          <p className="card-text">
-            {manga.description || "No description available."}
-          </p>
+        <div className="manga-page-left-rating">
+          Average Rating: {manga.averageRating || "N/A"}
         </div>
-        <div className="card-footer">
-          <small className="text-muted">
-            Average Rating: {manga.averageRating || "N/A"}
-          </small>
-        </div>
-
-        <div>
-          Reviews:
-          <ul className="rev-list">
-            {manga.reviews.map((review) => (
-              <li key={review.id}>
-                <div className="rev">
-                  <span>Author: {review.createdBy}</span>
-                  <span>Rating: {review.rating}</span>
-                  <span>Comment: {review.comment}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+        {localStorage.getItem("accessToken") ? (
+          <div className="manga-page-left-rate">
+            <Review loadManga={loadManga} />
+            <button onClick={() => deleteRev(id)}>Delete Review</button>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+      <div className="manga-page-right">
+        <span className="manga-page-right-title">{manga.name}</span>
+        <span className="manga-page-right-description">
+          <div className="manga-page-right-description-text">
+            {manga.description}
+          </div>
+        </span>
+        <div className="manga-page-right-revlist">
+          {manga.reviews.map((review) => (
+            <div className="manga-page-right-revlist-rev">
+              <span>Author: {review.createdBy}</span>
+              <span>Rating: {review.rating}</span>
+              <span>Comment: {review.comment}</span>
+            </div>
+          ))}
         </div>
       </div>
-      {localStorage.getItem("accessToken") ? (
-        <>
-          <Review loadManga={loadManga} />
-          <button onClick={() => deleteRev(id)}>Delete Review</button>
-        </>
-      ) : (
-        ""
-      )}
-    </>
+    </div>
   ) : (
     <>
       <h1>Loading...</h1>
